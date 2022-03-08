@@ -55,7 +55,7 @@ public class OrderPane extends BorderPane{
 	{
 		public void handle(ActionEvent event) 
 		{
-			if(translation.isArmed())
+			if(audio.isArmed())
 			{
 				playTranslation(audioFile);
 			}
