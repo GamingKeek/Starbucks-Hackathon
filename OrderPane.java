@@ -40,18 +40,16 @@ public class OrderPane extends BorderPane{
 	private Button audio;
 	private Label liveTranslationLabel;
 	private TextArea liveTranslationTextArea;
-	private Button translation;
 	private String audioFile;
 	
 	//constructor
 	public OrderPane()
 	{
-		Pane = new Pane
-		translation = new Button("translation");
-		translation.setOnAction(new ButtonHandler());
+		audio= new Button("audio"); //speaker icon button hopefully
+		audio.setOnAction(new ButtonHandler());
 		audioFile = "C:\\Users\\Movi\\Documents\\asuStarbucksHackathon\\src\\milkSpanish.wav";
 		//create an object for this instance of what type of milk
-		setCenter(translation);
+		setCenter(audio);
 	}
 	private class ButtonHandler implements EventHandler<ActionEvent> 
 	{
