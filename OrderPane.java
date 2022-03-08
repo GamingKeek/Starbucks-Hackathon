@@ -28,15 +28,25 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class OrderPane extends BorderPane{
+	private Pane pane;
 	private Label languageDetected;
 	private Label language;
 	private ComboBox greetings;
+	private Label languageA;
+	private Label languageB;
+	private Label languageATranslation;
+	private Label languageBTranslation;
+	private Label phonetic;
+	private Button audio;
+	private Label liveTranslationLabel;
+	private TextArea liveTranslationTextArea;
 	private Button translation;
 	private String audioFile;
 	
 	//constructor
 	public OrderPane()
 	{
+		Pane = new Pane
 		translation = new Button("translation");
 		translation.setOnAction(new ButtonHandler());
 		audioFile = "C:\\Users\\Movi\\Documents\\asuStarbucksHackathon\\src\\milkSpanish.wav";
