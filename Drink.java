@@ -1,20 +1,20 @@
 public class Drink {
-    String translatedSentence = "I want a tall hot coffee with milk";
+    private String translatedSentence = "I want a tall hot coffee with milk";
     
     private final String[] SIZE_OPTIONS = {"SMALL", "MEDIUM", "LARGE","TALL", "GRANDE", "VENTI", "TRENTA"};
-    String sizeSelected;
+    private String sizeSelected;
     
     private final String[] DRINK_TEMP = {"HOT", "COLD", "ICED"};
-    String temp;
+    private String temp;
     
     private final String[] MILK_OPTIONS =  {"DAIRY", "NON-DAIRY", "2%", "NONFAT", "WHOLE", "HALF AND HALF", "HEAVY CREAM", 
     "OAT", "SOY", "COCONUT", "ALMOND", "SWEET CREAM"};
-    String milkSelected;
+    private String milkSelected;
     
     public Drink() {
-        String size = sizeSelected;
-        String drinkTemp = temp;
-        String milk = milkSelected;
+        sizeSelected = "none";
+        temp = "none";
+        milkSelected = "none";
     }
 
     private String[] sentenceSplit(String sentence) {
@@ -25,7 +25,7 @@ public class Drink {
         return words;
     }
     
-    String[] keywords = sentenceSplit(translatedSentence);
+    private String[] keywords = sentenceSplit(translatedSentence);
 
     public void setSize() {
         for (int i = 0; i < keywords.length; i++) {
@@ -38,13 +38,7 @@ public class Drink {
     }
     
     public String getSize() {
-        if (sizeSelected != null) {
-            return sizeSelected;
-        }
-        else {
-            sizeSelected = "none";
-            return sizeSelected;
-        }
+        return sizeSelected;
     }
 
     public void setDrinkTemp() {
@@ -58,13 +52,7 @@ public class Drink {
     }
 
     public String getDrinkTemp() {
-        if (temp != null) {
-            return temp;
-        }
-        else {
-            temp = "none";
-            return temp;
-        } 
+        return temp;
     }
 
 
@@ -79,12 +67,6 @@ public class Drink {
     }
 
     public String getMilk() {
-        if (milkSelected != null) {
-            return milkSelected;
-        }
-        else {
-            milkSelected = "none";
-            return milkSelected;
-        }
+        return milkSelected;
     }
 }
