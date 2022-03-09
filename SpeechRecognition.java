@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 import static com.microsoft.cognitiveservices.speech.ResultReason.*;
 
 public class SpeechRecognition {
-    private static String YourSubscriptionKey = "25773c8f0dac46439e82ad77deac3e1a";
+    private static String YourSubscriptionKey = "25773c8f0dac46439e82ad77deac3e1a"; //Starbucks would need to put their key here, mine is here for testing
     private static String YourServiceRegion = "eastus";
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
