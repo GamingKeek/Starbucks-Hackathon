@@ -1,26 +1,31 @@
 import java.util.ArrayList;
 
 public class Order {
-    public static void main (String[] args) {
-        Drink newDrink = new Drink();
+    private Drink newDrink;
+    private ArrayList<String> commonTopics = new ArrayList<String>();
+    
+    public Order() {
+        newDrink = new Drink();
+    }
+
+    public void setDrink() {
         newDrink.setSize();
         newDrink.setDrinkTemp();
         newDrink.setMilk();
+    }
 
-        ArrayList<String> commonTopics = new ArrayList<String>();
-
+    public ArrayList<String> getCommonTopics() {
         if (newDrink.getSize().equals("none")) {
             commonTopics.add("Size");
         }
+        
         if (newDrink.getDrinkTemp().equals("none")) {
             commonTopics.add("Drink Type");
         }
+        
         if (newDrink.getMilk().equals("none")) {
             commonTopics.add("Milk");
         }
-
-        for (int i = 0; i < commonTopics.size(); i++) {
-            System.out.println(commonTopics.get(i));
-        }
-    }   
+        return commonTopics;
+    }
 }
