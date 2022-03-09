@@ -12,14 +12,14 @@ public class StarbucksDisplay extends Application {
 	private final String WINTITLE = "Starbucks";
 	private TabPane tabPane;
     private OrderPane orderPane;
-    private PhrasePane phrasePane;
+    private PhrasesPane phrasesPane;
     private TotalPane totalPane;
 
     @Override
     public void start(Stage stage) throws Exception {
     	StackPane rootPane = new StackPane();
         orderPane = new OrderPane();
-        phrasePane = new PhrasePane();
+        phrasesPane = new PhrasesPane();
         totalPane = new TotalPane();
         rootPane.setPrefSize(WINSIZE_X, WINSIZE_Y);
         
@@ -31,7 +31,7 @@ public class StarbucksDisplay extends Application {
 
         Tab phraseTab = new Tab();
         phraseTab.setText("PHRASES");
-        phraseTab.setContent(phrasePane);
+        phraseTab.setContent(phrasesPane);
         
         Tab totalTab = new Tab();
         totalTab.setText("TOTAL");
