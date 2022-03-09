@@ -30,6 +30,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class OrderPane extends VBox{
+	private ArrayList<String> suggestionList;
+	private String translatedSentence = "I want a tall hot coffee with milk";
 	private HBox topHBox;
 	private HBox bottomHBox;
 	private GridPane gridPane;
@@ -88,16 +90,18 @@ public class OrderPane extends VBox{
 		//live translation area
 		liveTranslationLabel = new Label("Live Translation ("+ customerLanguageAbbrev.getText() + "to " + partnerLanguageAbbrev.getText() +")");
 		liveTranslationTextArea = new TextArea(); //method to display text here
+		updateTextArea();
 		
 		//suggestion area
+		//suggestionList = getSuggestions(translatedSentence);
 		suggestions = new Label("Suggestions for Phrases:");
-		suggestion1= new Button("milk"); //implement kelly's method here
+		suggestion1= new Button("milk");
 		suggestion2= new Button("size");
 		suggestion3= new Button("espresso");
 		
 		//place buttons in HBox
 		bottomHBox = new HBox();
-		bottomHBox.getChildren().addAll(suggestion1, suggestion2, suggestion3);
+		bottomHBox.getChildren().addAll(suggestion1, suggestion2, suggestion3);//, suggestion2, suggestion3);
 		
 		//set all components in VBox
 		this.getChildren().addAll(topHBox, greetingsCombo, gridPane, liveTranslationLabel, liveTranslationTextArea, suggestions, bottomHBox);
@@ -131,7 +135,35 @@ public class OrderPane extends VBox{
 			}
 		}
 	}
+	/*
+	 private ArrayList<String> getSuggestions(String liveTranslation)
+	    {
+		 	Drink newDrink = new Drink(liveTranslation);
+		    newDrink.setSize();
+	        newDrink.setDrinkTemp();
+	        newDrink.setMilk();
+
+	        ArrayList<String> commonTopics = new ArrayList<String>();
+
+	        if (newDrink.getSize().equals("none")) {
+	            commonTopics.add("Size");
+	        }
+	        
+	        if (newDrink.getDrinkTemp().equals("none")) {
+	            commonTopics.add("Drink Type");
+	        }
+	        if (newDrink.getMilk().equals("none")) {
+	            commonTopics.add("Milk");
+	        }
+	        
+	        return commonTopics;
+	    }
+	 */
 	
+	private void updateTextArea()
+	{
+		liveTranslationTextArea.setText(translatedSentence);
+	}
 	
 	private void playTranslation(String filename)
 	{
