@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.scene.control.ComboBox;
@@ -16,7 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class OrderPane extends VBox{
+public class OrderPane extends VBox {
 	private ArrayList<Button> suggestionButtons;
 	private String translatedSentence = "I want a tall hot coffee with milk";
 	private HBox topHBox;
@@ -48,18 +51,22 @@ public class OrderPane extends VBox{
 		languageDetected = new Label("Language Detected: ");
 		customerLanguage = new Label("Spanish"); //determined by Azure language detection
 		topHBox.getChildren().addAll(languageDetected, customerLanguage);
+		topHBox.setPadding(new Insets(10));
 		
 		//initialize greetings combo box
 		greetingsCombo = new ComboBox<String>();
 		greetingsCombo.setValue("Greet the Customer!");
 		greetingsCombo.getItems().addAll(partnerGreetings);
 		greetingsCombo.setOnAction(new GreetingHandler());
+		greetingsCombo.setTranslateX(10);
 		
 		//initialize all nodes to go into middle grid pane
 		gridPane = new GridPane();
-		partnerLanguageAbbrev = new Label("EN "); 
+		partnerLanguageAbbrev = new Label("EN ");
+		partnerLanguageAbbrev.setPadding(new Insets(10));
 		customerLanguageAbbrev = new Label("SP "); //method
-		
+		customerLanguageAbbrev.setPadding(new Insets(10));
+
 		audioButton = new Button();
 		ImageView view = new ImageView(img);
 		view.setFitHeight(16);
@@ -67,6 +74,7 @@ public class OrderPane extends VBox{
 		audioButton.setGraphic(view);
 		audioFile = "C:/Users/kelly/Downloads/milkSpanish.wav";
 		audioButton.setOnAction(new ButtonHandler());
+		audioButton.setVisible(false);
 
 		partnerTranslation = new Label();
 		customerTranslation = new Label();
@@ -79,15 +87,19 @@ public class OrderPane extends VBox{
 		gridPane.add(customerTranslation, 1, 1);
 		gridPane.add(phoneticTranslation, 1, 2);
 		gridPane.add(audioButton, 2, 2);
-		
+		gridPane.setHgap(10);
+
 		//live translation area
 		liveTranslationLabel = new Label("Live Translation ("+ customerLanguageAbbrev.getText() + "to " + partnerLanguageAbbrev.getText() +")");
+		liveTranslationLabel.setPadding(new Insets(10));
 		liveTranslationTextArea = new TextArea(); //method to display text here
 		liveTranslationTextArea.setEditable(false);
+		liveTranslationTextArea.setTranslateX(10);
 		updateTextArea();
 		
 		//suggestion area
 		suggestions = new Label("Suggestions for Phrases:");
+		suggestions.setPadding(new Insets(10));
 		suggestionButtons = new ArrayList<Button>();
 		bottomHBox = new HBox();
 		Order newOrder = new Order();
@@ -97,8 +109,11 @@ public class OrderPane extends VBox{
 		suggestionButtons.add(new Button("Shortages"));
 		for (int i = 0; i < suggestionButtons.size(); i++) {
 			suggestionButtons.get(i).setOnAction(new SuggestionHandler());
+			suggestionButtons.get(i).setTranslateX(10);
 			bottomHBox.getChildren().addAll(suggestionButtons.get(i));
 		}
+		bottomHBox.setAlignment(Pos.CENTER);
+		bottomHBox.setSpacing(5);
 		
 		//set all components in VBox
 		this.getChildren().addAll(topHBox, greetingsCombo, gridPane, liveTranslationLabel, liveTranslationTextArea, suggestions, bottomHBox);
@@ -108,7 +123,8 @@ public class OrderPane extends VBox{
 		public void handle(ActionEvent event) {
 			partnerTranslation.setText(greetingsCombo.getValue());
 			customerTranslation.setText(customerGreetings[Arrays.asList(partnerGreetings).indexOf(greetingsCombo.getValue())]);
-			phoneticTranslation.setText(phoneticGreetings[Arrays.asList(partnerGreetings).indexOf(greetingsCombo.getValue())]);			
+			phoneticTranslation.setText(phoneticGreetings[Arrays.asList(partnerGreetings).indexOf(greetingsCombo.getValue())]);	
+			audioButton.setVisible(true);		
 		}
 	}
 	
