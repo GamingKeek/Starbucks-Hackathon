@@ -7,21 +7,20 @@ public class Order {
         newDrink.setDrinkTemp();
         newDrink.setMilk();
 
-        ArrayList<String> commonPhrases = new ArrayList<String>();
+        ArrayList<String> commonTopics = new ArrayList<String>();
 
         if (newDrink.getSize().equals("none")) {
-            commonPhrases.add("What size drink would you like?");
+            commonTopics.add("Size");
         }
         if (newDrink.getDrinkTemp().equals("none")) {
-            commonPhrases.add("Do you want that hot or cold?");
-            commonPhrases.add("Do you want that hot or iced?");
+            commonTopics.add("Drink Type");
         }
         if (newDrink.getMilk().equals("none")) {
-            commonPhrases.add("What kind of milk would you like?");
+            commonTopics.add("Milk");
         }
 
-        for (int i = 0; i < commonPhrases.size(); i++) {
-            System.out.println(commonPhrases.get(i));
+        for (int i = 0; i < commonTopics.size(); i++) {
+            System.out.println(commonTopics.get(i));
         }
     }   
 }
