@@ -27,17 +27,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class OrderPane extends BorderPane{
-	private Pane pane;
+public class OrderPane extends VBox{
+	private HBox topHBox;
+	private HBox bottomHBox;
+	private GridPane gridPane;
+	private Label suggestions;
 	private Label languageDetected;
-	private Label language;
-	private ComboBox greetings;
-	private Label languageA;
-	private Label languageB;
-	private Label languageATranslation;
-	private Label languageBTranslation;
-	private Label phonetic;
-	private Button audio;
+	private Label customerLanguage;
+	private Label customerLanguageAbbrev;
+	private ComboBox greetingsCombo;
+	private Label partnerLanguageAbbrev;
+	private Label partnerTranslation;
+	private Label customerTranslation;
+	private Label phoneticTranslation;
+	private Button audioButton;
+	private Button suggestion1;
+	private Button suggestion2;
+	private Button suggestion3;
 	private Label liveTranslationLabel;
 	private TextArea liveTranslationTextArea;
 	private String audioFile;
@@ -45,17 +51,64 @@ public class OrderPane extends BorderPane{
 	//constructor
 	public OrderPane()
 	{
+		//"Language Detection: Spanish" is placed into HBox
+		topHBox = new HBox();
+		languageDetected = new Label("Language Detected: ");
+		customerLanguage = new Label("Spanish"); //determined by Azure language detection
+		topHBox.getChildren().addAll(languageDetected, customerLanguage);
+		
+		//initialize greetings combo box
+		greetingsCombo = new ComboBox<String>();
+		greetingsCombo.setValue("Greet the Customer!");
+		
+		//initialize all nodes to go into middle grid pane
+		gridPane = new GridPane();
+		partnerLanguageAbbrev = new Label("EN "); 
+		customerLanguageAbbrev = new Label("SP "); //method
+		partnerTranslation = new Label("Hello"); //selected greeting from ComboBox
+		customerTranslation = new Label("Hola"); //hardcode this translation
+		phoneticTranslation = new Label("'ola"); //hardcode this translation
+		audioButton = new Button("listen");
+		
+		//place nodes in grid pane
+		gridPane.add(partnerLanguageAbbrev, 0, 0);
+		gridPane.add(partnerTranslation, 1, 0);
+		gridPane.add(customerLanguageAbbrev, 0, 1);
+		gridPane.add(customerTranslation, 1, 1);
+		gridPane.add(phoneticTranslation, 1, 2);
+		gridPane.add(audioButton, 2, 2);
+		
+		//live translation area
+		liveTranslationLabel = new Label("Live Translation ("+ customerLanguageAbbrev.getText() + "to " + partnerLanguageAbbrev.getText() +")");
+		liveTranslationTextArea = new TextArea(); //method to display text here
+		
+		//suggestion area
+		suggestions = new Label("Suggestions for Phrases:");
+		suggestion1= new Button("milk"); //implement kelly's method here
+		suggestion2= new Button("size");
+		suggestion3= new Button("espresso");
+		
+		//place buttons in HBox
+		bottomHBox = new HBox();
+		bottomHBox.getChildren().addAll(suggestion1, suggestion2, suggestion3);
+		
+		//set all components in VBox
+		this.getChildren().addAll(topHBox, greetingsCombo, gridPane, liveTranslationLabel, liveTranslationTextArea, suggestions, bottomHBox);
+	
+		/*
 		audio= new Button("audio"); //speaker icon button hopefully
 		audio.setOnAction(new ButtonHandler());
 		audioFile = "C:\\Users\\Movi\\Documents\\asuStarbucksHackathon\\src\\milkSpanish.wav";
 		//create an object for this instance of what type of milk
 		setCenter(audio);
+		*/
 	}
+	
 	private class ButtonHandler implements EventHandler<ActionEvent> 
 	{
 		public void handle(ActionEvent event) 
 		{
-			if(audio.isArmed())
+			if(audioButton.isArmed())
 			{
 				playTranslation(audioFile);
 			}
