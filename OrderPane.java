@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -35,7 +37,7 @@ public class OrderPane extends VBox{
 	private Label languageDetected;
 	private Label customerLanguage;
 	private Label customerLanguageAbbrev;
-	private ComboBox greetingsCombo;
+	private ComboBox<String> greetingsCombo;
 	private Label partnerLanguageAbbrev;
 	private Label partnerTranslation;
 	private Label customerTranslation;
@@ -47,6 +49,9 @@ public class OrderPane extends VBox{
 	private Label liveTranslationLabel;
 	private TextArea liveTranslationTextArea;
 	private String audioFile;
+	private final String[] partnerGreetings = {"Welcome to Starbucks", "Hi, how are you?"};
+	private final String[] customerGreetings = {"Bienvenido a starbucks", "Hola, cómo estás?"};
+	private final String[] phoneticGreetings = {"phonetic here","olaˈkomo ɛsˈtas"};
 	
 	//constructor
 	public OrderPane()
@@ -60,15 +65,17 @@ public class OrderPane extends VBox{
 		//initialize greetings combo box
 		greetingsCombo = new ComboBox<String>();
 		greetingsCombo.setValue("Greet the Customer!");
+		greetingsCombo.getItems().addAll(partnerGreetings);
+		greetingsCombo.setOnAction(new GreetingHandler());
 		
 		//initialize all nodes to go into middle grid pane
 		gridPane = new GridPane();
 		partnerLanguageAbbrev = new Label("EN "); 
 		customerLanguageAbbrev = new Label("SP "); //method
-		partnerTranslation = new Label("Hello"); //selected greeting from ComboBox
-		customerTranslation = new Label("Hola"); //hardcode this translation
-		phoneticTranslation = new Label("'ola"); //hardcode this translation
 		audioButton = new Button("listen");
+		partnerTranslation = new Label();
+		customerTranslation = new Label();
+		phoneticTranslation = new Label();
 		
 		//place nodes in grid pane
 		gridPane.add(partnerLanguageAbbrev, 0, 0);
@@ -102,6 +109,16 @@ public class OrderPane extends VBox{
 		//create an object for this instance of what type of milk
 		setCenter(audio);
 		*/
+	}
+	
+	private class GreetingHandler implements EventHandler<ActionEvent>
+	{
+		public void handle(ActionEvent event)
+		{
+			partnerTranslation.setText(greetingsCombo.getValue());
+			customerTranslation.setText(customerGreetings[Arrays.asList(partnerGreetings).indexOf(greetingsCombo.getValue())]);
+			phoneticTranslation.setText(phoneticGreetings[Arrays.asList(partnerGreetings).indexOf(greetingsCombo.getValue())]);			
+		}
 	}
 	
 	private class ButtonHandler implements EventHandler<ActionEvent> 
