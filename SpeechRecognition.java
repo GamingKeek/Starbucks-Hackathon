@@ -144,28 +144,33 @@ public class SpeechRecognition {
                 "Extra Toasted"
 
         };
+        
+        for (String phrase : phrases)
+            phraseList.addPhrase(phrase);
         //Muffins and Scones
-        /*for (String phrase : phrases)
+        /* 
+        String[] phrases = {"
+        
+        for (String phrase : phrases)
             phraseList.addPhrase(phrase);
 
         //Loaves and Cakes
-        String[] phrases = {""};
-
-        //Bagels and Breads
+        String[] phrases = {
+        
         for (String phrase : phrases)
             phraseList.addPhrase(phrase);
 
-        //
-        String[] phrases = {""};
-
-        for (String phrase : phrases)
-            phraseList.addPhrase(phrase);
-
+        //Bagels and Bread
         String[] phrases = {""};
 
         for (String phrase : phrases)
             phraseList.addPhrase(phrase);
+        //Brownies, Cookies, and Bars
+        String[] phrases = {""};
 
+        for (String phrase : phrases)
+            phraseList.addPhrase(phrase);
+        //Hot Breakfast Items
         String[] phrases = {""};
 
         for (String phrase : phrases)
