@@ -43,7 +43,7 @@ public class SpeechRecognition {
 
         //Espresso
         String[] phrases = {"Latte", "Chocolate Almondmilk Shaken Espresso", "Toasted Vanilla Shaken Espresso",
-                "Cinnamon Dolce Latte", "Flat White", "Honey Almondmilk Flat White", "Caramel Macchiato"
+                "Cinnamon Dolce Latte", "Flat White", "Honey Almondmilk Flat White", "Caramel Macchiato",
                 "Mocha", "White Mocha", "Pistachio Latte", "Peppermint Mocha", "Peppermint White Mocha",
                 "Irish Creme", "Caramel Brulee", "Pumpkin Spice Latte", "Americano", "Espresso", "Espresso Con Panna",
                 "Cappuccino", "Iced Shaken Espresso"
