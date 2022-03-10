@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.scene.control.ComboBox;
@@ -95,6 +94,7 @@ public class OrderPane extends VBox {
 		liveTranslationTextArea = new TextArea(); //method to display text here
 		liveTranslationTextArea.setEditable(false);
 		liveTranslationTextArea.setTranslateX(10);
+		liveTranslationTextArea.setMaxSize(380, 250);
 		updateTextArea();
 		
 		//suggestion area
@@ -114,6 +114,7 @@ public class OrderPane extends VBox {
 		}
 		bottomHBox.setAlignment(Pos.CENTER);
 		bottomHBox.setSpacing(5);
+		bottomHBox.setPadding(new Insets(0, 0, 20, 0));
 		
 		//set all components in VBox
 		this.getChildren().addAll(topHBox, greetingsCombo, gridPane, liveTranslationLabel, liveTranslationTextArea, suggestions, bottomHBox);
