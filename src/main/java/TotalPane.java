@@ -81,7 +81,7 @@ public class TotalPane extends VBox {
         orderGrid.add(one, 1, 1);
         orderGrid.add(coffeePrice, 2, 1);
         orderGrid.add(wholeMilk, 0, 3);
-	orderGrid.add(milkPrice, 2, 3);
+        orderGrid.add(milkPrice, 2, 3);
 
         orderVerification = new Label("Ask the customer if they want anything else");
         orderVerification.setFont(Font.font("Ariel", FontWeight.BOLD, 12));
@@ -134,6 +134,7 @@ public class TotalPane extends VBox {
 		liveTranslationTextArea = new TextArea(); //method to display text here
 		liveTranslationTextArea.setEditable(false);
 		liveTranslationTextArea.setTranslateX(10);
+        liveTranslationTextArea.setMaxSize(380, 65);
 		updateTextArea();
 
         
