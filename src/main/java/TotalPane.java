@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -38,7 +37,6 @@ public class TotalPane extends VBox {
     private Label phoeneticResponse;
     private Button responseListen;
     private String audioFile; //make sure audio files are downloaded for whoever runs program
-   // private Image img = new Image("C:/Users/Movi/Downloads/button.png"); //must change for whoever runs program
     private Label totalConfirmation;
     private Label partnerTotal;
     private Label customerTotal;
@@ -46,10 +44,8 @@ public class TotalPane extends VBox {
     private Label phoeneticTotal;
     private Button listenTotal;
     private String audioFile2; //same here
-    //private Image img2 = new Image("C:/Users/Movi/Downloads/button.png");
     private Label liveTranslationLabel;
 	private TextArea liveTranslationTextArea;
-    private String translatedSentence = "Hi I want a hot coffee with milk. Whole milk. No, that's it. Thank you.";
     
     public TotalPane() {
         screen = new VBox();
@@ -99,22 +95,15 @@ public class TotalPane extends VBox {
         languageInfo = new HBox();
         phoeneticResponse = new Label("Deh-seh-ah ahl-goh mahs");
         phoeneticResponse.setPadding(new Insets(0, 10, 0, 15));
-        responseListen = new Button();
-        
+        responseListen = new Button(); 
         
         //image
-		/*ImageView view = new ImageView(img);
-		view.setFitHeight(14);
-		view.setPreserveRatio(true);
-		responseListen.setGraphic(view);
-		*/
-        
         ImageView view = new ImageView();
         view.setPreserveRatio(true);
         view.setFitHeight(14);
         FileInputStream input;
 		try {
-			input = new FileInputStream("C:\\Users\\Movi\\Downloads\\button.png");
+			input = new FileInputStream("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
 			Image image = new Image(input);
 			view.setImage(image);
 		} catch (FileNotFoundException e) {
@@ -127,19 +116,17 @@ public class TotalPane extends VBox {
 		responseListen.setGraphic(view);
 		FileInputStream input2;
 		try {
-			input2 = new FileInputStream("C:\\Users\\Movi\\Downloads\\button (1).png");
+			input2 = new FileInputStream("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
 			Image image2 = new Image(input2);
 			view2.setImage(image2);
 		} catch (FileNotFoundException e) {
 			view2.setImage(null);
 		}
 		
-        
-		audioFile = "C:\\Users\\Movi\\Downloads\\deseaalgomas_2022-03-09_214844477.wav";
+		audioFile = "C:/Users/kelly/Downloads/deseaalgomas_2022-03-09_214844477.wav";
 		responseListen.setOnAction(new ButtonHandler());
         languageInfo.getChildren().addAll(phoeneticResponse, responseListen);
         
-
         totalConfirmation = new Label("If no, let customer know total is displayed on screen");
         totalConfirmation.setFont(Font.font("Ariel", FontWeight.BOLD, 12));
         totalConfirmation.setPadding(new Insets(10, 0, 0, 10));
@@ -151,17 +138,12 @@ public class TotalPane extends VBox {
         customerTotal.setPadding(new Insets(0, 0, 0, 15));
 
         languageTotal = new HBox();
-        phoeneticTotal = new Label("se ˈmwɛstɾa ɛl toˈtal ˈɡɾak");
+        phoeneticTotal = new Label("Seh mu-ehs-trah el toh-tahl, grah-see-ahs");
         phoeneticTotal.setPadding(new Insets(0, 10, 0, 15));
         listenTotal = new Button();
 		listenTotal.setGraphic(view2);
         
-		/*ImageView view2 = new ImageView(img2);
-		view2.setFitHeight(14);
-		view2.setPreserveRatio(true);
-		listenTotal.setGraphic(view2);*/
-        
-		audioFile2 = "C:\\Users\\Movi\\Downloads\\semuestraeltotalgracias_2022-03-09_215128945.wav";
+		audioFile2 = "C:/Users/kelly/Downloads/semuestraeltotalgracias_2022-03-09_215128945.wav";
 		listenTotal.setOnAction(new ButtonHandler());
         languageTotal.getChildren().addAll(phoeneticTotal, listenTotal);
 
@@ -172,7 +154,7 @@ public class TotalPane extends VBox {
 		liveTranslationTextArea.setEditable(false);
 		liveTranslationTextArea.setTranslateX(10);
 		liveTranslationTextArea.setText("Hi I want a hot coffee with milk. Whole milk.");
-
+        liveTranslationTextArea.setMaxSize(380, 200);
         
         screen.getChildren().addAll(order, orderGrid, orderVerification, partnerQuestion, customerQuestion, languageInfo,
             totalConfirmation, partnerTotal, customerTotal, languageTotal, liveTranslationLabel, liveTranslationTextArea);
@@ -220,9 +202,5 @@ public class TotalPane extends VBox {
 		catch(Exception e) {
 			e.printStackTrace();	
 		}	
-	}
-    
-    private void updateTextArea() {
-		liveTranslationTextArea.setText(translatedSentence);
 	}
 }

@@ -3,6 +3,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javafx.scene.control.Button;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -40,7 +42,7 @@ public class OrderPane extends VBox {
 	private final String[] partnerGreetings = {"Welcome to Starbucks", "Hi, how are you?"};
 	private final String[] customerGreetings = {"Bienvenido a Starbucks", "Hola, cómo estás?"};
 	private final String[] phoneticGreetings = {"bjɛ̃mbeˈniðo a Starbucks","olaˈkomo ɛsˈtas"};
-	//private Image img = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
+	private String suggestionTopic;
   
 	//constructor
 	public OrderPane() {
@@ -67,11 +69,19 @@ public class OrderPane extends VBox {
 		customerLanguageAbbrev.setPadding(new Insets(10));
 
 		audioButton = new Button();
-		//ImageView view = new ImageView(img);
-		//view.setFitHeight(16);
-		//view.setPreserveRatio(true);
-		//audioButton.setGraphic(view);
-		audioFile = "C:\\Users\\Movi\\Downloads\\bienvenidoastarbucks_2022-03-09_214636505.wav";
+        ImageView view = new ImageView();
+        view.setPreserveRatio(true);
+        view.setFitHeight(14);
+        FileInputStream input;
+		try {
+			input = new FileInputStream("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
+			Image image = new Image(input);
+			view.setImage(image);
+		} catch (FileNotFoundException e) {
+			view.setImage(null);
+		}
+		audioButton.setGraphic(view);
+		audioFile = "C:/Users/kelly/Downloads/bienvenidoastarbucks_2022-03-09_214636505.wav";
 		audioButton.setOnAction(new ButtonHandler());
 		audioButton.setVisible(false);
 
@@ -144,15 +154,21 @@ public class OrderPane extends VBox {
 	private class SuggestionHandler implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent e) {
 			if (e.getSource() == suggestionButtons.get(0)) {
-				System.out.println("What kind of milk?");
-			}
-			else if (e.getSource() == suggestionButtons.get(1)) {
-				System.out.println("I reccommend the Mocha Cookie Crumble Frappuccino");
-			}
-			else {
-				System.out.println("Sorry, we're out of...");
+				if (suggestionButtons.get(0).getText().equals("Milk")) {
+					suggestionTopic = "Milk";
+				}
+				else if (suggestionButtons.get(0).getText().equals("Drink Type")) {
+					suggestionTopic = "Drink Type";
+				}
+				else if (suggestionButtons.get(0).getText().equals("Size")) {
+					suggestionTopic =  "Size";
+				}
 			}
 		}
+	}
+
+	public String getSuggestion() {
+		return suggestionTopic;
 	}
 	
 	private void updateTextArea() {
