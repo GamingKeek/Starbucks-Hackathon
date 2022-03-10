@@ -81,6 +81,7 @@ public class TotalPane extends VBox {
         orderGrid.add(one, 1, 1);
         orderGrid.add(coffeePrice, 2, 1);
         orderGrid.add(wholeMilk, 0, 3);
+	orderGrid.add(milkPrice, 2, 3);
 
         orderVerification = new Label("Ask the customer if they want anything else");
         orderVerification.setFont(Font.font("Ariel", FontWeight.BOLD, 12));
