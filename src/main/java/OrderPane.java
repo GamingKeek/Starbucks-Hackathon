@@ -40,7 +40,7 @@ public class OrderPane extends VBox {
 	private final String[] partnerGreetings = {"Welcome to Starbucks", "Hi, how are you?"};
 	private final String[] customerGreetings = {"Bienvenido a Starbucks", "Hola, cómo estás?"};
 	private final String[] phoneticGreetings = {"bjɛ̃mbeˈniðo a Starbucks","olaˈkomo ɛsˈtas"};
-	private Image img = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
+	//private Image img = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
   
 	//constructor
 	public OrderPane() {
@@ -67,11 +67,11 @@ public class OrderPane extends VBox {
 		customerLanguageAbbrev.setPadding(new Insets(10));
 
 		audioButton = new Button();
-		ImageView view = new ImageView(img);
-		view.setFitHeight(16);
-		view.setPreserveRatio(true);
-		audioButton.setGraphic(view);
-		audioFile = "C:/Users/kelly/Downloads/milkSpanish.wav";
+		//ImageView view = new ImageView(img);
+		//view.setFitHeight(16);
+		//view.setPreserveRatio(true);
+		//audioButton.setGraphic(view);
+		audioFile = "C:\\Users\\Movi\\Downloads\\bienvenidoastarbucks_2022-03-09_214636505.wav";
 		audioButton.setOnAction(new ButtonHandler());
 		audioButton.setVisible(false);
 
@@ -95,7 +95,6 @@ public class OrderPane extends VBox {
 		liveTranslationTextArea.setEditable(false);
 		liveTranslationTextArea.setTranslateX(10);
 		liveTranslationTextArea.setMaxSize(380, 250);
-		updateTextArea();
 		
 		//suggestion area
 		suggestions = new Label("Suggestions for Phrases:");
@@ -132,6 +131,13 @@ public class OrderPane extends VBox {
 	private class ButtonHandler implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
 			playTranslation(audioFile);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			updateTextArea();
 		}
 	}
 

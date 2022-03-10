@@ -34,16 +34,16 @@ public class TotalPane extends VBox {
     private HBox languageInfo;
     private Label phoeneticResponse;
     private Button responseListen;
-    private String audioFile;
-    private Image img = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
+    private String audioFile; //make sure audio files are downloaded for whoever runs program
+    //private Image img = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png"); //must change for whoever runs program
     private Label totalConfirmation;
     private Label partnerTotal;
     private Label customerTotal;
     private HBox languageTotal;
     private Label phoeneticTotal;
     private Button listenTotal;
-    private String audioFile2;
-    private Image img2 = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
+    private String audioFile2; //same here
+    //private Image img2 = new Image("C:/Users/kelly/Downloads/1607bd824e0e35d7e88df23a56a24540.png");
     private Label liveTranslationLabel;
 	private TextArea liveTranslationTextArea;
     private String translatedSentence = "Hi I want a hot coffee with milk. Whole milk. No, that's it. Thank you.";
@@ -81,7 +81,7 @@ public class TotalPane extends VBox {
         orderGrid.add(one, 1, 1);
         orderGrid.add(coffeePrice, 2, 1);
         orderGrid.add(wholeMilk, 0, 3);
-        orderGrid.add(milkPrice, 2, 3);
+	    orderGrid.add(milkPrice, 2, 3);
 
         orderVerification = new Label("Ask the customer if they want anything else");
         orderVerification.setFont(Font.font("Ariel", FontWeight.BOLD, 12));
@@ -96,12 +96,16 @@ public class TotalPane extends VBox {
         languageInfo = new HBox();
         phoeneticResponse = new Label("Deh-seh-ah ahl-goh mahs");
         phoeneticResponse.setPadding(new Insets(0, 10, 0, 15));
-        responseListen = new Button();
-		ImageView view = new ImageView(img);
-		view.setFitHeight(14);
-		view.setPreserveRatio(true);
-		responseListen.setGraphic(view);
-		audioFile = "C:/Users/kelly/Downloads/milkSpanish.wav";
+        responseListen = new Button("<)");
+        
+        
+        //image
+		//ImageView view = new ImageView(img);
+		//view.setFitHeight(14);
+		//view.setPreserveRatio(true);
+		//responseListen.setGraphic(view);
+        
+		audioFile = "C:\\Users\\Movi\\Downloads\\deseaalgomas_2022-03-09_214844477.wav";
 		responseListen.setOnAction(new ButtonHandler());
         languageInfo.getChildren().addAll(phoeneticResponse, responseListen);
         
@@ -119,23 +123,24 @@ public class TotalPane extends VBox {
         languageTotal = new HBox();
         phoeneticTotal = new Label("se ˈmwɛstɾa ɛl toˈtal ˈɡɾak");
         phoeneticTotal.setPadding(new Insets(0, 10, 0, 15));
-        listenTotal = new Button();
-		ImageView view2 = new ImageView(img2);
-		view2.setFitHeight(14);
-		view2.setPreserveRatio(true);
-		listenTotal.setGraphic(view2);
-		audioFile2 = "C:/Users/kelly/Downloads/milkSpanish.wav";
+        listenTotal = new Button("<)");
+        
+		//ImageView view2 = new ImageView(img);
+		//view2.setFitHeight(14);
+		//view2.setPreserveRatio(true);
+		//listenTotal.setGraphic(view2);
+        
+		audioFile2 = "C:\\Users\\Movi\\Downloads\\semuestraeltotalgracias_2022-03-09_215128945.wav";
 		listenTotal.setOnAction(new ButtonHandler());
         languageTotal.getChildren().addAll(phoeneticTotal, listenTotal);
 
         //live translation area
-		liveTranslationLabel = new Label("Live Translation (EN to SP)");
+		liveTranslationLabel = new Label("Live Translation (SP to EN)");
 		liveTranslationLabel.setPadding(new Insets(10));
 		liveTranslationTextArea = new TextArea(); //method to display text here
 		liveTranslationTextArea.setEditable(false);
 		liveTranslationTextArea.setTranslateX(10);
-        liveTranslationTextArea.setMaxSize(380, 65);
-		updateTextArea();
+		liveTranslationTextArea.setText("Hi I want a hot coffee with milk. Whole milk.");
 
         
         screen.getChildren().addAll(order, orderGrid, orderVerification, partnerQuestion, customerQuestion, languageInfo,
@@ -147,9 +152,23 @@ public class TotalPane extends VBox {
 		public void handle(ActionEvent event) {
 			if (event.getSource() == responseListen) {
                 playTranslation(audioFile);
+                try {
+        			Thread.sleep(3000);
+        		} catch (InterruptedException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
+                liveTranslationTextArea.setText("Hi I want a hot coffee with milk. Whole milk. No, that's it.");
             }
             else if (event.getSource() == listenTotal) {
                 playTranslation(audioFile2);
+                try {
+        			Thread.sleep(5000);
+        		} catch (InterruptedException e) {
+        			// TODO Auto-generated catch block
+        			e.printStackTrace();
+        		}
+                liveTranslationTextArea.setText("Hi I want a hot coffee with milk. Whole milk. No, that's it. Thank you.");
             }
 		}
 	}
