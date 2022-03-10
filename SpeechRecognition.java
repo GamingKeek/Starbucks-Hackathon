@@ -187,6 +187,11 @@ public class SpeechRecognition {
             phraseList.addPhrase(phrase); */
 
 
+       public static void recognizeFromMicrophone(SpeechConfig speechConfig) throws InterruptedException, ExecutionException {
+        //To recognize speech from an audio file, use `fromWavFileInput` instead of `fromDefaultMicrophoneInput`:
+        //AudioConfig audioConfig = AudioConfig.fromWavFileInput("YourAudioFile.wav");
+        AudioConfig audioConfig = AudioConfig.fromDefaultMicrophoneInput();
+        SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
 
         System.out.println("Speak into your microphone.");
         Future<SpeechRecognitionResult> task = speechRecognizer.recognizeOnceAsync();
