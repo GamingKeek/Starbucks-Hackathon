@@ -16,6 +16,8 @@ public class SpeechRecognition {
         speechConfig.setSpeechRecognitionLanguage("de-DE");
         recognizeFromMicrophone(speechConfig);
         
+        PhraseListGrammar phraseList = PhraseListGrammar.fromRecognizer(Recognizer);
+        
         String[] phrases = {"Short", "Tall", "Grande", "Venti", "Trenta", "Pike Place Roast", "Dark Roast", "Blonde Roast",
             "Pour Over", "Iced Coffee", "Iced Coffee with Milk", "Iced Coffee Refill", "Cold Brew", "Cold Brew with Milk",
             "Vanilla Sweet Cream Cold Brew", "Cold Brew with Cold Foam", "Salted Caramel Cream Cold Brew",
