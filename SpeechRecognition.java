@@ -1,3 +1,7 @@
+package speech;
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
 import com.microsoft.cognitiveservices.speech.*;
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 import java.util.concurrent.ExecutionException;
@@ -5,20 +9,19 @@ import java.util.concurrent.Future;
 
 //comment
 
+
 import static com.microsoft.cognitiveservices.speech.ResultReason.*;
 
 public class SpeechRecognition {
     private static String YourSubscriptionKey = "25773c8f0dac46439e82ad77deac3e1a";
     private static String YourServiceRegion = "eastus";
+    static final String SPEECH__SUBSCRIPTION__KEY = System.getenv("25773c8f0dac46439e82ad77deac3e1a");
+    static final String SPEECH__SERVICE__REGION = System.getenv("eastus");
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription(YourSubscriptionKey, YourServiceRegion);
-        speechConfig.setSpeechRecognitionLanguage("de-DE");
-        recognizeFromMicrophone(speechConfig);
-        
-        PhraseListGrammar phraseList = PhraseListGrammar.fromRecognizer(Recognizer);
-        
-        String[] phrases = {"Short", "Tall", "Grande", "Venti", "Trenta", "Pike Place Roast", "Dark Roast", "Blonde Roast",
+    /* PhraseListGrammar phraseList = PhraseListGrammar.fromRecognizer(Recognizer);
+
+
+    String[] phrases = {"Short", "Tall", "Grande", "Venti", "Trenta", "Pike Place Roast", "Dark Roast", "Blonde Roast",
             "Pour Over", "Iced Coffee", "Iced Coffee with Milk", "Iced Coffee Refill", "Cold Brew", "Cold Brew with Milk",
             "Vanilla Sweet Cream Cold Brew", "Cold Brew with Cold Foam", "Salted Caramel Cream Cold Brew",
             "Cold Brew Refill", "Caffe Misto", "Hot Coffee Refill", "Draft", "Nitro Cold Brew",
@@ -43,8 +46,8 @@ public class SpeechRecognition {
             "Cold Brew Float", "Nitro Cold Brew Float", "Add Scoop Vanilla Ice Cream", "Espresso Affogato",
             "Dirty Chai", "Dirty Chai Cold Brew Malt", "Earl Grey Mocha Malt", "Single Scoop Vanilla Ice Cream",
             "Tropic Like It's Hot", "In the Dark", "Lavender Chai Oatmilk Latte", "Rose Blossom Berry Infusion",
-            "Golden Ice", "Blue Tropic",  "Iced", "Blonde", "Decaf", "2/3 Decaf", "1/2 Decaf",
-            "Single", "Doppio", "Triple", "Quad", "More Shots", "Affogato Shots","Frappuccino Roast Coffee",
+            "Golden Ice", "Blue Tropic", "Iced", "Blonde", "Decaf", "2/3 Decaf", "1/2 Decaf",
+            "Single", "Doppio", "Triple", "Quad", "More Shots", "Affogato Shots", "Frappuccino Roast Coffee",
             "Kids", "Updosed", "Long Shot", "Ristretto", "Caramel Syrup", "Cinnamon Dolce Syrup", "Hazelnut Syrup",
             "Toffee Nut Syrup", "Vanilla Syrup", "Classic Syrup", "Peppermint Syrup", "Raspberry Syrup",
             "Toasted Vanilla Syrup", "Brown Sugar Syrup", "Chai", "Honey Blend", "Liquid Cane Sugar",
@@ -52,12 +55,12 @@ public class SpeechRecognition {
             "Dark Caramel Sauce", "Caramel Brulee Sauce", "Pistachio Sauce", "Pumps", "Extra", "Light", "No", "Sub",
             "with", "Nonfat Milk", "2% Milk", "Whole Milk", "Soy Milk", "Oatmilk", "Coconut Milk",
             "Almondmilk", "Half & Half", "Breve", "Heavy Cream", "Add Dairy", "Ice", "Water", "Whipped Cream",
-            "Vanilla Sweet Cream", "Agave", "Splenda", "Sugar", "Stevia", "Honey", "Raw Sugar", "Add Banana", 
-            "Add Blueberries", "Strawberry Puree", "Frappuccino Chips", "Vanilla Bean Powder", "Matcha", 
+            "Vanilla Sweet Cream", "Agave", "Splenda", "Sugar", "Stevia", "Honey", "Raw Sugar", "Add Banana",
+            "Add Blueberries", "Strawberry Puree", "Frappuccino Chips", "Vanilla Bean Powder", "Matcha",
             "Kiwi Inclusions", "Strawberry Inclusions", "Mango Dragonfruit Inclusions", "Lemonade",
-            "Kiwi Starfruit Refresher Base", "Dragonfruit Refresher Base", "Foam", "Cold Foam", 
-            "Vanilla Sweet Cream Cold Foam", "Salted Caramel Cream Cold Foam", "With Room", "Extra Hot", 
-            "Mocha Drizzle", "Caramel Drizzle", "Cinnamon Powder", "Chocolate Malt Powder", "Apple Juice", 
+            "Kiwi Starfruit Refresher Base", "Dragonfruit Refresher Base", "Foam", "Cold Foam",
+            "Vanilla Sweet Cream Cold Foam", "Salted Caramel Cream Cold Foam", "With Room", "Extra Hot",
+            "Mocha Drizzle", "Caramel Drizzle", "Cinnamon Powder", "Chocolate Malt Powder", "Apple Juice",
             "Peach Juice Blend", "Black Tea Base", "Green Tea Base", "Passion Tango Base", "Cinnamon Dolce Topping",
             "Cookie Crumble Topping", "Caramel Sugar Topping", "Caramel Crunch", "Salted Brown Butter Topping",
             "No Topping", "Warm", "Temperature", "Steamed", "Route to Reserve Bar", "Wet", "Dry", "Sparkling",
@@ -71,41 +74,51 @@ public class SpeechRecognition {
             "PB and J", "Chickpea Bites and Avocado", "Grilled Chicken and Hummus", "Cook Open Faced",
             "Extra Toasted"
     };
+        for(String phrase : phrase)
+            phraseList.addPhrase(phrases)); */
 
-        for (String phrase : phrases)
-            phraseList.addPhrase(phrase);
 
+
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        SpeechConfig speechConfig = SpeechConfig.fromSubscription(YourSubscriptionKey, YourServiceRegion);
+        speechConfig.setSpeechRecognitionLanguage("en-US");
+        recognizeFromMicrophone(speechConfig);
     }
 
-    public static void recognizeFromMicrophone(SpeechConfig speechConfig) throws InterruptedException, ExecutionException {
-        //To recognize speech from an audio file, use `fromWavFileInput` instead of `fromDefaultMicrophoneInput`:
-        //AudioConfig audioConfig = AudioConfig.fromWavFileInput("YourAudioFile.wav");
-        AudioConfig audioConfig = AudioConfig.fromDefaultMicrophoneInput();
-        SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
+        public static void recognizeFromMicrophone (SpeechConfig speechConfig) throws
+        InterruptedException, ExecutionException {
+            //To recognize speech from an audio file, use `fromWavFileInput` instead of `fromDefaultMicrophoneInput`:
+            //AudioConfig audioConfig = AudioConfig.fromWavFileInput("YourAudioFile.wav");
+            AudioConfig audioConfig = AudioConfig.fromDefaultMicrophoneInput();
+            SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
 
-        System.out.println("Speak into your microphone.");
-        Future<SpeechRecognitionResult> task = speechRecognizer.recognizeOnceAsync();
-        SpeechRecognitionResult speechRecognitionResult = task.get();
+            System.out.println("Speak into your microphone.");
+            Future<SpeechRecognitionResult> task = speechRecognizer.recognizeOnceAsync();
+            SpeechRecognitionResult speechRecognitionResult = task.get();
 
-        switch (speechRecognitionResult.getReason()) {
-            case RecognizedSpeech:
-                System.out.println("RECOGNIZED: Text=" + speechRecognitionResult.getText());
-                //exitCode = 0;
-                break;
-            case NoMatch:
-                System.out.println("NOMATCH: Speech could not be recognized.");
-                break;
-            case Canceled: {
-                CancellationDetails cancellation = CancellationDetails.fromResult(speechRecognitionResult);
-                System.out.println("CANCELED: Reason=" + cancellation.getReason());
+            switch (speechRecognitionResult.getReason()) {
+                case RecognizedSpeech:
+                    System.out.println("RECOGNIZED: Text=" + speechRecognitionResult.getText());
+                    //exitCode = 0;
+                    break;
+                case NoMatch:
+                    System.out.println("NOMATCH: Speech could not be recognized.");
+                    break;
+                case Canceled: {
+                    CancellationDetails cancellation = CancellationDetails.fromResult(speechRecognitionResult);
+                    System.out.println("CANCELED: Reason=" + cancellation.getReason());
 
-                if (cancellation.getReason() == CancellationReason.Error) {
-                    System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
-                    System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-                    System.out.println("CANCELED: Did you update the subscription info?");
+                    if (cancellation.getReason() == CancellationReason.Error) {
+                        System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
+                        System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
+                        System.out.println("CANCELED: Did you update the subscription info?");
+                    }
                 }
+                break;
             }
-            break;
         }
     }
-}
+
+
+
+
