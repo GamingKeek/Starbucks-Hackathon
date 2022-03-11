@@ -10,12 +10,28 @@ repositories {
     maven {
         url "https://csspeechstorage.blob.core.windows.net/maven/"
     }
+    maven {
+        url 'https://repo.clojars.org'
+        name 'Clojars'
+    }
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    implementation 'net.dankito.text.extraction:finereader-hotfolder-text-extractor:0.6.0'
+    implementation 'com.squareup.okhttp:okhttp:2.5.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.ow2.clif.isac:FileReader:3.0.3'
+    implementation 'net.dankito.text.extraction:finereader-commandline-text-extractor:0.6.0'
+    implementation 'com.bazaarvoice.ostrich.examples.dictionary:dictionary:2.1.0'
+    implementation 'dignati:dictionary:0.2.0'
+    implementation 'com.github.maximjev:java-snapshot:1.0.6'
+    implementation 'com.github.nbbrd.java-desktop-util:java-desktop-util-os:2.2.5'
+    implementation 'org.scala-sbt:test-interface:1.0'
+    implementation 'com.github.nbbrd.java-desktop-util:java-desktop-util-parent:2.2.5'
+    implementation 'net.dankito.utils:java-utils:1.0.18'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     implementation group: 'com.microsoft.cognitiveservices.speech', name: 'client-sdk', version: "1.19.0", ext: "jar"
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
 test {
