@@ -25,6 +25,7 @@ public class SpeechRecognition {
         //AudioConfig audioConfig = AudioConfig.fromWavFileInput("YourAudioFile.wav");
         AudioConfig audioConfig = AudioConfig.fromDefaultMicrophoneInput();
         SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
+        PhraseList.getPhraseList(speechRecognizer);
 
         System.out.println("\nSpeak into your microphone.");
         Future<SpeechRecognitionResult> task = speechRecognizer.recognizeOnceAsync();
