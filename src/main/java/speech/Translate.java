@@ -20,9 +20,9 @@ public class Translate {
             .host("api.cognitive.microsofttranslator.com")
             .addPathSegment("/translate")
             .addQueryParameter("api-version", "3.0")
-            .addQueryParameter("from", "en")
-            .addQueryParameter("to", "de")
-            .addQueryParameter("to", "es")
+            .addQueryParameter("from", "es")
+            //.addQueryParameter("to", "de")
+            .addQueryParameter("to", "en")
             .build();
 
     // Instantiates the OkHttpClient.

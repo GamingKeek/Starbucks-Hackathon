@@ -12,14 +12,15 @@ import static speech.Translate.prettify;
 public class SpeechRecognition {
     private static final String YourSubscriptionKey = "25773c8f0dac46439e82ad77deac3e1a";
     private static final String YourServiceRegion = "eastus";
+    //private String response;
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
+    public void main(String[] args) throws InterruptedException, ExecutionException {
         SpeechConfig speechConfig = SpeechConfig.fromSubscription(YourSubscriptionKey, YourServiceRegion);
-        speechConfig.setSpeechRecognitionLanguage("en-US");
+        speechConfig.setSpeechRecognitionLanguage("es-ES");
         recognizeFromMicrophone(speechConfig);
     }
 
-    public static void recognizeFromMicrophone (SpeechConfig speechConfig) throws
+    public String recognizeFromMicrophone (SpeechConfig speechConfig) throws
             InterruptedException, ExecutionException {
         //To recognize speech from an audio file, use `fromWavFileInput` instead of `fromDefaultMicrophoneInput`:
         //AudioConfig audioConfig = AudioConfig.fromWavFileInput("YourAudioFile.wav");
@@ -37,28 +38,39 @@ public class SpeechRecognition {
                 //TRANSLATION
                 Translate translateRequest = new Translate();
                 String response = null;
+                //OrderPane orderPane = new OrderPane();
                 try {
                     response = translateRequest.Post(speechRecognitionResult.getText());
+                    //orderPane.setResponse(response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println(prettify(response));
+
+                return (prettify(response));
                 //exitCode = 0;
-                break;
+                //break;
             case NoMatch:
-                System.out.println("NOMATCH: Speech could not be recognized.");
-                break;
+                return "NOMATCH: Speech could not be recognized.";
+                //break;
             case Canceled: {
                 CancellationDetails cancellation = CancellationDetails.fromResult(speechRecognitionResult);
-                System.out.println("CANCELED: Reason=" + cancellation.getReason());
 
                 if (cancellation.getReason() == CancellationReason.Error) {
-                    System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
-                    System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-                    System.out.println("CANCELED: Did you update the subscription info?");
+                    return "CANCELED: ErrorCode=" + cancellation.getErrorCode() +
+                    "CANCELED: ErrorDetails=" + cancellation.getErrorDetails() +
+                    "CANCELED: Did you update the subscription info?";
                 }
+
+                return "CANCELED: Reason=" + cancellation.getReason();
             }
-            break;
+            //break;
         }
+        return "your mom";
     }
+
+    /*public String getResponse()
+    {
+        return response;
+    }*/
+
 }
