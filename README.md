@@ -12,8 +12,8 @@ Make Sure to
 2. have gradle downloaded
 3. make sure Azure subscription keys and region are inserted for Translate and Speech to Text Resource (in Translate.java and SpeechRecognition.java)
 4. The current language is set to listen for Spanish (es-ES) and translate to English (en-EN), change accordingly in Translate.java and SpeechRecognition.java
-   a. Code Segment in Translate.java
+   Code Segment in Translate.java
      {.addQueryParameter("from", "es") 
      .addQueryParameter("to", "en")}
-   b. Code Segment in SpeechRecognition.java
+   Code Segment in SpeechRecognition.java
     {speechConfig.setSpeechRecognitionLanguage("es-ES");}
